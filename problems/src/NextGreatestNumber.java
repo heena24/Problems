@@ -5,7 +5,7 @@ class NextGreatestNumber
  {
 	public static void main (String[] args)
 	 {
-	 //code
+	 // DOESN'T works with larger number of array
 	 Scanner sc = new Scanner(System.in); 
 	 int testcase = sc.nextInt();
 	 int i=1;
@@ -41,4 +41,44 @@ class NextGreatestNumber
 	    i++;
 	 }
 	 }
+	
+	// Works with larger number of array 
+	private void usingStack()
+	{
+		int t,n,i,j,max=-1;
+        Scanner scanner = new Scanner(System.in);
+        t = scanner.nextInt();
+        while (t != 0)
+        {
+            n = scanner.nextInt();
+            Stack<Integer> stack = new Stack<>();
+            int[] array = new int[n];
+            for(i=0;i<n;i++)
+            {
+                array[i] = scanner.nextInt();
+                stack.push(array[i]);
+            }
+            max = -1;
+            for(i=n-1;i>=0;i--)
+            {
+                int temp = stack.pop();
+                if(max == -1)
+                {
+                    array[i] = max;
+                    max = temp;
+                }
+                else
+                {
+                    array[i] = max;
+                    max = max > temp ? max : temp ;
+                }
+            }
+            for(i=0;i<n;i++)
+            {
+                System.out.print(array[i] + " ");
+            }
+            System.out.println("");
+            t--;
+        }
+	}
 }
